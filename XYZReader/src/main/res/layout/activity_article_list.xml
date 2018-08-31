@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:elevation="@dimen/app_bar_elevation"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/main.collapsing"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
 
             <FrameLayout
                 android:id="@+id/main_framelayout_title"
