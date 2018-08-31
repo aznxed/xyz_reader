@@ -7,105 +7,120 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded">
-    <com.example.xyzreader.ui.DrawInsetsFrameLayout
-        android:id="@+id/draw_insets_frame_layout"
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.example.xyzreader.ui.ObservableScrollView
-            android:id="@+id/scrollview"
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="300dp"
+            app:title="Hello"
+            app:expandedTitleMarginBottom="94dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleTextAppearance="@style/CollapsingTextAppearance.Inverse"
+            app:contentScrim="?colorPrimary">
 
-            <FrameLayout
+            <!--suppress AndroidLintContentDescription -->
+            <ImageView
+                android:id="@+id/photo"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:transitionName="@string/transition_image"
+                />
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/flexible.example.toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="?attr/actionBarSize"
+                android:background="@null"
+                app:layout_collapseMode="pin"
+                style="@style/ToolBarWithNavigationBack"
+                />
 
-                <FrameLayout
-                    android:id="@+id/photo_container"
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:behavior_overlapTop="78dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/cardview_padding"
+            android:paddingRight="@dimen/cardview_padding">
+            <android.support.v7.widget.CardView
+                android:id="@+id/flexible.example.cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPaddingBottom="16dp"
+                app:contentPaddingLeft="16dp"
+                app:contentPaddingRight="16dp"
+                app:cardCornerRadius="4dp"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardElevation="4dp"
+                android:layout_margin="8dp">
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/photo_placeholder">
-                    <!--suppress AndroidLintContentDescription -->
-                    <ImageView
-                        android:id="@+id/photo"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        />
-                </FrameLayout>
-
-                <com.example.xyzreader.ui.MaxWidthLinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:maxWidth="@dimen/detail_card_max_width"
-                    android:elevation="2dp"
-                    android:layout_marginTop="@dimen/detail_card_top_margin">
-
-
-                    <LinearLayout
-                        android:id="@+id/meta_bar"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <com.example.xyzreader.ui.MaxWidthLinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="#333"
-                        android:layout_gravity="bottom"
-                        android:orientation="vertical"
-                        android:paddingLeft="@dimen/detail_inner_horiz_margin"
-                        android:paddingRight="@dimen/detail_inner_horiz_margin"
-                        android:paddingTop="@dimen/detail_metabar_vert_padding"
-                        android:paddingBottom="@dimen/detail_metabar_vert_padding"
-                        android:layout_marginBottom="@dimen/detail_metabar_vert_padding">
-
-                        <TextView
-                            android:id="@+id/article_title"
-                            style="?android:attr/textAppearanceLarge"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/detail_metabar_title_bottom_padding"
-                            android:fontFamily="sans-serif-condensed"
-                            android:textColor="#fff"
-                            android:textStyle="bold"
-                            android:textSize="@dimen/detail_title_text_size"
-                            android:lineSpacingMultiplier="0.9" />
+                        android:layout_gravity="center_horizontal"
+                        android:maxWidth="@dimen/detail_card_max_width"
+                        android:elevation="2dp"
+                        android:layout_marginTop="12dp">
 
                         <TextView
                             android:id="@+id/article_byline"
                             style="?android:attr/textAppearanceSmall"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#8fff" />
-                    </LinearLayout>
+                            android:textColor="@color/theme_accent"
+                            android:textSize="@dimen/detail_body_text_size"
+                            android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
+                            android:layout_marginRight="@dimen/detail_inner_horiz_margin"
+                            android:paddingBottom="4dp"/>
 
-                    <TextView
-                        android:id="@+id/article_body"
-                        style="?android:attr/textAppearanceMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
-                        android:layout_marginRight="@dimen/detail_inner_horiz_margin"
-                        android:paddingBottom="@dimen/detail_body_bottom_margin"
-                        android:textColorLink="@color/theme_accent"
-                        android:textSize="@dimen/detail_body_text_size"
-                        android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
+                        <TextView
+                            android:id="@+id/article_body"
+                            style="?android:attr/textAppearanceMedium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
+                            android:layout_marginRight="@dimen/detail_inner_horiz_margin"
+                            android:paddingBottom="@dimen/detail_body_bottom_margin"
+                            android:textColorLink="@color/theme_accent"
+                            android:textSize="@dimen/detail_body_text_size"
+                            android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier" />
 
-                </com.example.xyzreader.ui.MaxWidthLinearLayout>
-            </FrameLayout>
-        </com.example.xyzreader.ui.ObservableScrollView>
+                    </com.example.xyzreader.ui.MaxWidthLinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/share_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:src="@drawable/ic_share"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/action_share"
-            app:elevation="@dimen/fab_elevation"
-            app:pressedTranslationZ="@dimen/fab_press_translation_z"/>
-    </com.example.xyzreader.ui.DrawInsetsFrameLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-
-
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/share_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_share"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/action_share"
+        app:elevation="@dimen/fab_elevation"
+        app:pressedTranslationZ="@dimen/fab_press_translation_z"
+        app:layout_anchor="@id/flexible.example.cardview"
+        app:layout_anchorGravity="top|right|end"/>
 </android.support.design.widget.CoordinatorLayout>

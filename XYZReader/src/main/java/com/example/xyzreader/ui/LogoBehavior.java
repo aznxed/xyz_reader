@@ -12,8 +12,8 @@ import com.example.xyzreader.R;
 
 @SuppressWarnings("unused")
 public class LogoBehavior extends CoordinatorLayout.Behavior<ImageView>{
-    private final static float MIN_AVATAR_PERCENTAGE_SIZE   = 0.3f;
-    private final static int EXTRA_FINAL_AVATAR_PADDING     = 80;
+    private final static float MIN_AVATAR_PERCENTAGE_SIZE   = 0.5f;
+    private final static int EXTRA_FINAL_AVATAR_PADDING     = 40;
 
     private final static String TAG = "behavior";
     private Context mContext;
